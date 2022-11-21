@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import NavigationBar from "../../components/NavigationBar";
 import {
   PokemonContextProps,
   PokemonDataProviderProps,
@@ -11,6 +12,9 @@ export const PokemonDataProvider = ({
   const value: PokemonContextProps = useMemo(() => ({}), []);
 
   return (
-    <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>
+    <PokemonContext.Provider value={value}>
+      <NavigationBar />
+      {children}
+    </PokemonContext.Provider>
   );
 };
