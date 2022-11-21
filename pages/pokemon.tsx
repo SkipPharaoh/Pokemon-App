@@ -9,7 +9,6 @@ import {
   AllPokemonName,
   AllPokemonImage,
 } from "../types/pokemon-types";
-import { PokemonDataProvider } from "../hooks/FeedProvider/PokemonDataProvider";
 
 const gqlVariables: GQLVariableType = {
   limit: 9,
@@ -65,16 +64,14 @@ export default function Pokemon() {
   }, [AllPokemon]);
 
   return (
-    <PokemonDataProvider>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3, lg: 4, xl: 5 }}
-          columns={{ xs: 4, sm: 8, md: 12, lg: 16, xl: 20 }}
-        >
-          {pokemon?.name}
-        </Grid>
-      </Box>
-    </PokemonDataProvider>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3, lg: 4, xl: 5 }}
+        columns={{ xs: 4, sm: 8, md: 12, lg: 16, xl: 20 }}
+      >
+        {pokemon?.name}
+      </Grid>
+    </Box>
   );
 }

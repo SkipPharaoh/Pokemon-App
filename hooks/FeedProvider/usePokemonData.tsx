@@ -6,7 +6,9 @@ export const usePokemonData = (): PokemonContextProps => {
   const context = useContext(PokemonContext);
 
   if (!context) {
-    throw new Error("`usePokemonData` must be used within a `FeedProvider");
+    throw new Error(
+      "`usePokemonData` must be used within a `PokemonDataProvider`"
+    );
   }
 
   return context;
