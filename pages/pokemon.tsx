@@ -11,7 +11,7 @@ import {
 } from "../types/pokemon-types";
 
 const gqlVariables: GQLVariableType = {
-  limit: 9,
+  limit: 150,
   offset: 0,
 };
 

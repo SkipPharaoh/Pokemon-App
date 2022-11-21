@@ -1,9 +1,38 @@
 import React from "react";
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Paper, styled, Button } from "@mui/material";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
+import { regions } from "../pokemon-info/pokeInfo";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 export default function Home() {
-  const { region, handleOnClick, regionName } = usePokemonData();
+  const { region, handleOnClick } = usePokemonData();
+
+  const regionName = regions.map((region) => {
+    return (
+      <Grid
+        item
+        xs={2}
+        sm={4}
+        md={4}
+        lg={5}
+        xl={6}
+        key={region.name.toString()}
+      >
+        <Item>
+          <Button size="large" onClick={handleOnClick}>
+            {region.name}
+          </Button>
+        </Item>
+      </Grid>
+    );
+  });
 
   console.log(region);
   return (
