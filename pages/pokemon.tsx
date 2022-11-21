@@ -1,19 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { GetAllPokemon } from "../graphQL/pokemon-data";
-import { useQuery } from "@apollo/client";
+import React from "react";
 import { Card, Grid, Paper, Box, styled } from "@mui/material";
-import {
-  GQLVariableType,
-  AllPokemon,
-  AllPokemonId,
-  AllPokemonName,
-  AllPokemonImage,
-} from "../types/pokemon-types";
-
-const gqlVariables: GQLVariableType = {
-  limit: 150,
-  offset: 0,
-};
+import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -24,44 +11,21 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Pokemon() {
-  const [pokemon, setPokemon] = useState<AllPokemon>();
-  const {
-    loading: AllPokemonLoading,
-    error: AllPokemonError,
-    data: AllPokemon,
-  } = useQuery(GetAllPokemon, {
-    variables: gqlVariables,
+  const { pokemon } = usePokemonData();
+
+  const pokeId = pokemon?.id;
+  const pokeName = pokemon?.name.map((name) => {
+    return (
+      <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name.toString()}>
+        <Item>{name}</Item>
+      </Grid>
+    );
   });
+  const pokeImage = pokemon?.image;
+  const pokePrevious = pokemon?.previous;
+  const pokeNext = pokemon?.next;
 
-  const PokemonList = {
-    id: AllPokemon?.pokemons.results.map((pokemon: AllPokemonId) => pokemon.id),
-    name: AllPokemon?.pokemons.results.map((pokemon: AllPokemonName) => {
-      return (
-        <Grid
-          item
-          xs={2}
-          sm={4}
-          md={4}
-          lg={5}
-          xl={6}
-          key={pokemon.name.toString()}
-        >
-          <Item>{pokemon.name}</Item>
-        </Grid>
-      );
-    }),
-    image: AllPokemon?.pokemons.results.map(
-      (pokemon: AllPokemonImage) => pokemon.dreamworld
-    ),
-    previous: AllPokemon?.pokemons.previous,
-    next: AllPokemon?.pokemons.next,
-  };
-
-  useEffect(() => {
-    if (AllPokemon) {
-      setPokemon(PokemonList);
-    }
-  }, [AllPokemon]);
+  console.log(pokeId);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -70,7 +34,7 @@ export default function Pokemon() {
         spacing={{ xs: 2, md: 3, lg: 4, xl: 5 }}
         columns={{ xs: 4, sm: 8, md: 12, lg: 16, xl: 20 }}
       >
-        {pokemon?.name}
+        {pokeName}
       </Grid>
     </Box>
   );

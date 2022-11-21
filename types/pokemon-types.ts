@@ -4,9 +4,9 @@ export interface GQLVariableType {
 }
 
 export interface AllPokemon {
-  id: AllPokemonId;
-  name: AllPokemonName;
-  image: AllPokemonImage;
+  id: number[];
+  name: string[];
+  image: string[];
   next: string;
   previous: string;
 }
