@@ -36,8 +36,13 @@ export const regions = [
   },
   {
     name: "Galar",
-    limit: 89,
+    limit: 96,
     offset: 809,
+  },
+  {
+    name: "Variants",
+    limit: 249,
+    offset: 905,
   },
 ];
 
