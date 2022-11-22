@@ -6,9 +6,13 @@ export default function NavigationBar() {
       <div>
         <h1>PokeDex Logo</h1>
       </div>
-      <Link href="/">Home</Link>
-      {/* <Link href="">Search</Link> */}
-      <Link href="/pokemon">All Pokemon</Link>
+      <Link href="/">
+        <p>Home</p>
+      </Link>
+      {/* <Link href=""><p>Search</p></Link> */}
+      <Link href="/pokemon">
+        <p>All Pokemon</p>
+      </Link>
     </nav>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Grid, Paper, Box, styled } from "@mui/material";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
+import NavigationBar from "../components/NavigationBar";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -11,21 +12,21 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Pokemon() {
-  const { pokemon } = usePokemonData();
+  const { pokemons } = usePokemonData();
 
-  const pokeId = pokemon?.id;
-  const pokeName = pokemon?.name.map((name) => {
+  const pokeId = pokemons?.id;
+  const pokeName = pokemons?.name.map((name) => {
     return (
-      <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name.toString()}>
+      <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name}>
         <Item>{name}</Item>
       </Grid>
     );
   });
-  const pokeImage = pokemon?.image;
-  const pokePrevious = pokemon?.previous;
-  const pokeNext = pokemon?.next;
+  const pokeImage = pokemons?.image;
+  const pokePrevious = pokemons?.previous;
+  const pokeNext = pokemons?.next;
 
-  console.log(pokeId);
+  console.log(pokeName);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

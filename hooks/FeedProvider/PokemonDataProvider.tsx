@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import NavigationBar from "../../components/NavigationBar";
 import {
   AllPokemon,
@@ -6,6 +6,7 @@ import {
   AllPokemonId,
   AllPokemonName,
   AllPokemonImage,
+  PokemonDetail,
 } from "../../types/pokemon-types";
 import {
   PokemonContextProps,
@@ -14,31 +15,32 @@ import {
 import { PokemonContext } from "./PokemonContext";
 import { regions } from "../../pokemon-info/pokeInfo";
 import { useQuery } from "@apollo/client";
-import { GetAllPokemon } from "../../graphQL/pokemon-data";
+import { GetAllPokemon, GetPokemonDetail } from "../../graphQL/pokemon-data";
+import useFormatString from "../FormatString/useFormatString";
 
-const variableInfo: GQLVariableType = {
+const defaultVariable: GQLVariableType = {
   limit: regions[0].limit,
   offset: regions[0].offset,
-};
-
-const gqlVariables: GQLVariableType = {
-  limit: 151,
-  offset: 0,
 };
 
 export const PokemonDataProvider = ({
   children,
 }: PokemonDataProviderProps): JSX.Element => {
-  const [region, setRegion] = useState<string>(regions[0].name);
-  const [variable, setVariable] = useState<GQLVariableType>(variableInfo);
-  const [pokemon, setPokemon] = useState<AllPokemon>();
+  const [region, setRegion] = useState<string | HTMLElement>(regions[0].name);
+  const [variable, setVariable] = useState<GQLVariableType>(defaultVariable);
+  const [pokemons, setPokemons] = useState<AllPokemon>();
+  const [pokemon, setPokemon] = useState<PokemonDetail>();
 
   const {
     loading: AllPokemonLoading,
     error: AllPokemonError,
     data: AllPokemon,
   } = useQuery(GetAllPokemon, {
-    variables: gqlVariables,
+    variables: variable,
+  });
+
+  const { loading, error, data } = useQuery(GetPokemonDetail, {
+    variables: "",
   });
 
   const PokemonList: AllPokemon = {
@@ -53,23 +55,29 @@ export const PokemonDataProvider = ({
     next: AllPokemon?.pokemons.next,
   };
 
+  let regionName: string | HTMLElement;
+
   useEffect(() => {
     if (!AllPokemonLoading) {
-      setPokemon(PokemonList);
-      console.log(pokemon);
+      setPokemons(PokemonList);
+      console.log(pokemons);
     }
   }, [AllPokemon]);
 
-  const handleOnClick = (evt: React.SyntheticEvent) => {
-    useEffect(() => {
-      // setRegion(region[EventTarget])
-    }, [region]);
+  const handleOnClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    regionName = evt.target as HTMLElement;
     evt.preventDefault();
+    regionName = useFormatString(regionName.innerText);
+    setRegion(regionName);
+    regions.map((region) => {
+      if (region.name === regionName)
+        setVariable({ limit: region.limit, offset: region.offset });
+    });
   };
 
   const value: PokemonContextProps = useMemo(
-    () => ({ region, handleOnClick: handleOnClick, pokemon }),
-    [region, handleOnClick, pokemon]
+    () => ({ handleOnClick: handleOnClick, pokemons }),
+    [handleOnClick, pokemons]
   );
 
   return (

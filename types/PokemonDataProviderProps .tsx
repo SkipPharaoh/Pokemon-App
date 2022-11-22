@@ -1,9 +1,8 @@
 import { AllPokemon } from "./pokemon-types";
 
 export interface PokemonContextProps {
-  region: string;
-  handleOnClick: (evt: React.SyntheticEvent) => void;
-  pokemon: AllPokemon | undefined;
+  handleOnClick: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  pokemons: AllPokemon | undefined;
 }
 
 export interface PokemonDataProviderProps {
