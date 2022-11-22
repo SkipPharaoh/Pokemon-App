@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, Grid, Paper, Box, styled } from "@mui/material";
+import { Grid, Paper, Box, styled, Button } from "@mui/material";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
-import NavigationBar from "../components/NavigationBar";
+import Link from "next/link";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -12,21 +12,23 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Pokemon() {
-  const { pokemons } = usePokemonData();
+  const { pokemons, handleViewPokemon } = usePokemonData();
 
   const pokeId = pokemons?.id;
   const pokeName = pokemons?.name.map((name) => {
     return (
       <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name}>
-        <Item>{name}</Item>
+        <Item>
+          <Button size="large" onClick={handleViewPokemon}>
+            <Link href={`/pokemon/${name}`}>{name}</Link>
+          </Button>
+        </Item>
       </Grid>
     );
   });
   const pokeImage = pokemons?.image;
   const pokePrevious = pokemons?.previous;
   const pokeNext = pokemons?.next;
-
-  console.log(pokeName);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

@@ -3,6 +3,10 @@ export interface GQLVariableType {
   offset: number;
 }
 
+export interface PokemonNameVariable {
+  name: string;
+}
+
 export interface AllPokemon {
   id: number[];
   name: string[];
@@ -44,4 +48,49 @@ export interface PokemonDetail {
   levelForMoves: number[];
   methodForMoves: string[];
   versionMoveAvailable: string[];
+}
+
+export interface PokemonTypes {
+  type: {
+    name: string;
+  };
+}
+
+export interface PokemonAbilities {
+  ability: {
+    name: string;
+  };
+  is_hidden: boolean;
+}
+
+export interface PokemonGame {
+  game_index: number;
+  version: {
+    name: string;
+  };
+}
+
+export interface PokemonStats {
+  stat: {
+    name: string;
+  };
+  base_stat: number;
+}
+
+export interface PokemonMoves {
+  move: PokemonMove;
+  version_group_details: {
+    level_learned_at: number;
+    map: (move: PokemonMove) => void;
+  };
+}
+
+export interface PokemonMove {
+  name: string;
+  move_learn_method?: {
+    name: string;
+  };
+  version_group?: {
+    name: string;
+  };
 }
