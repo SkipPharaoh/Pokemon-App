@@ -10,8 +10,8 @@ export default function NavigationBar() {
         <p>Home</p>
       </Link>
       {/* <Link href=""><p>Search</p></Link> */}
-      <Link href="/pokemon" legacyBehavior>
-        <a>All Pokemon</a>
+      <Link href="/pokemon">
+        <p>All Pokemon</p>
       </Link>
     </nav>
   );

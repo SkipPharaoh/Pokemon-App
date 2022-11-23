@@ -3,9 +3,6 @@ import NavigationBar from "../../components/NavigationBar";
 import {
   AllPokemon,
   GQLVariableType,
-  AllPokemonId,
-  AllPokemonName,
-  AllPokemonImage,
   PokemonDetail,
   PokemonTypes,
   PokemonAbilities,
@@ -55,13 +52,7 @@ export const PokemonDataProvider = ({
   });
 
   const PokemonList: AllPokemon = {
-    id: AllPokemon?.pokemons.results.map((pokemon: AllPokemonId) => pokemon.id),
-    name: AllPokemon?.pokemons.results.map(
-      (pokemon: AllPokemonName) => pokemon.name
-    ),
-    image: AllPokemon?.pokemons.results.map(
-      (pokemon: AllPokemonImage) => pokemon.dreamworld
-    ),
+    pokemonData: AllPokemon?.pokemons.results,
     previous: AllPokemon?.pokemons.previous,
     next: AllPokemon?.pokemons.next,
   };
@@ -71,9 +62,9 @@ export const PokemonDataProvider = ({
     name: PokemonDetail?.pokemon.name,
     height: PokemonDetail?.pokemon.height,
     weight: PokemonDetail?.pokemon.weight,
-    frontImage: PokemonDetail?.pokemon.sprites.front_default,
-    backImage: PokemonDetail?.pokemon.sprites.back_default,
-    typeName: PokemonDetail?.pokemon.types.map(
+    officialImage: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${PokemonDetail?.pokemon.id}.png`,
+    homeImage: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${PokemonDetail?.pokemon.id}.png`,
+    typeName: PokemonDetail?.pokemon.types?.map(
       (types: PokemonTypes) => types.type.name
     ),
 
@@ -115,8 +106,7 @@ export const PokemonDataProvider = ({
   };
 
   let regionName: string | HTMLElement;
-  let pokemonName: string | HTMLElement;
-  console.log(PokemonInfo);
+  let pokemonName: string;
 
   useEffect(() => {
     if (!PokemonDetailLoading) {
@@ -139,11 +129,8 @@ export const PokemonDataProvider = ({
     });
   };
 
-  const handleViewPokemonDetail = (
-    evt: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    pokemonName = evt.target as HTMLElement;
-    pokemonName = useFormatString(pokemonName.innerText).toLowerCase();
+  const handleViewPokemonDetail = (name: string) => {
+    pokemonName = useFormatString(name).toLowerCase();
     setPokemonVariable({ name: pokemonName });
   };
 

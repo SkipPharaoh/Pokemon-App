@@ -2,7 +2,7 @@ import { AllPokemon, PokemonDetail } from "./pokemon-types";
 
 export interface PokemonContextProps {
   handleOnClick: (evt: React.MouseEvent<HTMLButtonElement>) => void;
-  handleViewPokemon: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  handleViewPokemon: (name: string) => void;
   pokemons: AllPokemon | undefined;
   pokemon: PokemonDetail | undefined;
 }

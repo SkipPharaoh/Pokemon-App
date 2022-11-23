@@ -8,7 +8,7 @@ export const GetAllPokemon = gql`
       results {
         id
         name
-        dreamworld
+        image
       }
     }
   }

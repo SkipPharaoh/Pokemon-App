@@ -7,14 +7,6 @@ export interface PokemonNameVariable {
   name: string;
 }
 
-export interface AllPokemon {
-  id: number[];
-  name: string[];
-  image: string[];
-  next: string;
-  previous: string;
-}
-
 export interface AllPokemonId {
   id: number[];
 }
@@ -22,7 +14,18 @@ export interface AllPokemonName {
   name: string[];
 }
 export interface AllPokemonImage {
-  dreamworld: string[];
+  image: string[];
+}
+
+export interface PokemonData {
+  id: number;
+  name: string;
+  image: string;
+}
+export interface AllPokemon {
+  pokemonData: PokemonData[];
+  next: string;
+  previous: string;
 }
 
 export interface PokemonEvolution {
@@ -35,8 +38,8 @@ export interface PokemonDetail {
   name: string;
   height: number;
   weight: number;
-  frontImage: string;
-  backImage: string;
+  officialImage: string;
+  homeImage: string;
   typeName: string[];
   abilities: string[];
   isAbilityHidden: boolean[];
