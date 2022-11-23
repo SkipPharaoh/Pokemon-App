@@ -1,9 +1,7 @@
 import React from "react";
 import {
   Grid,
-  Paper,
   Box,
-  styled,
   Card,
   Avatar,
   CardContent,
@@ -17,14 +15,6 @@ import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import Link from "next/link";
 import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 export default function Pokemon() {
   const { pokemons, handleViewPokemon } = usePokemonData();
