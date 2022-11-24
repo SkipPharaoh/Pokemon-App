@@ -1,46 +1,55 @@
 export const regions = [
   {
     name: "Kanto",
+    image: ["pokemon-gen-1-starters.png", "/assets/regions/Kanto.png"],
     limit: 151,
     offset: 0,
   },
   {
     name: "Johto",
+    image: ["pokemon-gen-2-starters.png", "/assets/regions/Johto.png"],
     limit: 100,
     offset: 151,
   },
   {
     name: "Hoenn",
+    image: ["pokemon-gen-3-starters.png", "/assets/regions/Hoenn.png"],
     limit: 135,
     offset: 251,
   },
   {
     name: "Sinnoh",
+    image: ["pokemon-gen-4-starters.png", "/assets/regions/Sinnoh.png"],
     limit: 108,
     offset: 386,
   },
   {
     name: "Unova",
+    image: ["pokemon-gen-5-starters.png", "/assets/regions/Unova.png"],
     limit: 155,
     offset: 494,
   },
   {
     name: "Kalos",
+    image: ["pokemon-gen-6-starters.png", "/assets/regions/Kalos.png"],
     limit: 72,
     offset: 649,
   },
   {
     name: "Alola",
+    image: ["pokemon-gen-7-starters.png", "/assets/regions/Alola.png"],
     limit: 88,
     offset: 721,
   },
   {
     name: "Galar",
+    image: ["pokemon-gen-8-starters.png", "/assets/regions/Galar.png"],
     limit: 96,
     offset: 809,
   },
   {
     name: "Variants",
+    image: [""],
     limit: 249,
     offset: 905,
   },

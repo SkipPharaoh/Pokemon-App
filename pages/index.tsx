@@ -3,6 +3,7 @@ import { Grid, Box, Paper, styled, Button } from "@mui/material";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import { regions } from "../pokemon-info/pokeInfo";
 import Link from "next/link";
+import Image from "next/image";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,11 +17,14 @@ export default function Home() {
   const { handleOnClick } = usePokemonData();
 
   const regionName = regions.map((region) => {
+    const name = region.name;
+    const image = region.image;
     return (
-      <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={region.name}>
+      <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name}>
         <Item>
+          <Image src={image[1]} alt={name} width={300} height={300} priority />
           <Button size="large" onClick={handleOnClick}>
-            <Link href="/pokemon">{region.name}</Link>
+            <Link href="/pokemon">{name}</Link>
           </Button>
         </Item>
       </Grid>
