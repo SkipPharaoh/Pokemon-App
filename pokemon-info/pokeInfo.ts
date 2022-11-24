@@ -20,14 +20,14 @@ export const regions = [
   {
     name: "Sinnoh",
     image: ["pokemon-gen-4-starters.png", "/assets/regions/Sinnoh.png"],
-    limit: 108,
+    limit: 107,
     offset: 386,
   },
   {
     name: "Unova",
     image: ["pokemon-gen-5-starters.png", "/assets/regions/Unova.png"],
-    limit: 155,
-    offset: 494,
+    limit: 156,
+    offset: 493,
   },
   {
     name: "Kalos",
@@ -56,7 +56,6 @@ export const regions = [
 ];
 
 export const types = [
-  "all types",
   "grass",
   "bug",
   "dark",

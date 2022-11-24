@@ -15,6 +15,7 @@ import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import Link from "next/link";
 import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import FilterBar from "../components/FilterBar";
 
 export default function Pokemon() {
   const { pokemons, handleViewPokemon } = usePokemonData();
@@ -70,6 +71,7 @@ export default function Pokemon() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <FilterBar />
       <Grid
         container
         spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}

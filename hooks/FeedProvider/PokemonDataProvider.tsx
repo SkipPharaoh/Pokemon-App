@@ -111,6 +111,7 @@ export const PokemonDataProvider = ({
   useEffect(() => {
     if (!PokemonDetailLoading) {
       setPokemon(PokemonInfo);
+      console.log(PokemonInfo?.typeName);
     }
   }, [PokemonDetail]);
 
