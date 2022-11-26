@@ -112,6 +112,7 @@ export const PokemonDataProvider = ({
     if (!PokemonDetailLoading) {
       setPokemon(PokemonInfo);
       console.log(PokemonInfo?.typeName);
+      console.log(PokemonInfo);
     }
   }, [PokemonDetail]);
 

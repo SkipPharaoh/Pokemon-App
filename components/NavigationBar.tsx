@@ -4,12 +4,11 @@ export default function NavigationBar() {
   return (
     <nav>
       <div>
-        <h1>PokeDex Logo</h1>
+        <p>Home</p>
       </div>
       <Link href="/">
-        <p>Home</p>
+        <h1>PokeDex Logo</h1>
       </Link>
-      {/* <Link href=""><p>Search</p></Link> */}
       <Link href="/pokemon">
         <p>All Pokemon</p>
       </Link>

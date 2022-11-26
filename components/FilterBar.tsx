@@ -13,7 +13,13 @@ import { regions, types } from "../pokemon-info/pokeInfo";
 
 export default function FilterBar() {
   return (
-    <Box sx={{ display: "flex", justifyContent: ["center", "space-evenly"] }}>
+    <Box
+      sx={{
+        display: { xs: "table", sm: "flex" },
+        justifyContent: ["center", "space-evenly"],
+        margin: { xs: "auto" },
+      }}
+    >
       <Box sx={{ m: 1 }}>
         <Autocomplete
           id="country-select-demo"
