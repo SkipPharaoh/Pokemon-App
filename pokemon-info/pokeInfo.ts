@@ -73,7 +73,7 @@ export const regions = [
   },
   {
     name: "Variants",
-    image: [""],
+    image: ["/assets/starters/variants.png", ""],
     limit: 249,
     offset: 905,
   },

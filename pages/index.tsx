@@ -22,7 +22,7 @@ export default function Home() {
     return (
       <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name}>
         <Item>
-          <Image src={image[1]} alt={name} width={300} height={300} priority />
+          <Image src={image[0]} alt={name} width={300} height={300} priority />
           <Button size="large" onClick={handleOnClick}>
             <Link href="/pokemon">{name}</Link>
           </Button>
@@ -32,7 +32,7 @@ export default function Home() {
   });
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginTop: 10 }}>
       <Grid
         container
         spacing={{ xs: 2, md: 3, lg: 4, xl: 5 }}

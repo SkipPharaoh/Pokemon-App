@@ -25,5 +25,5 @@ export default function PokemonPage() {
       {pokemon?.name}
     </Item>
   );
-  return <Box sx={{ flexGrow: 1 }}>{pokemonCard}</Box>;
+  return <Box sx={{ flexGrow: 1, marginTop: 10 }}>{pokemonCard}</Box>;
 }

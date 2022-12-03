@@ -18,6 +18,8 @@ export default function FilterBar() {
         display: { xs: "table", sm: "flex" },
         justifyContent: ["center", "space-evenly"],
         margin: { xs: "auto" },
+        paddingTop: 8,
+        paddingBottom: 2,
       }}
     >
       <Box sx={{ m: 1 }}>
