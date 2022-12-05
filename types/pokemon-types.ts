@@ -4,7 +4,7 @@ export interface GQLVariableType {
 }
 
 export interface PokemonNameVariable {
-  name: string;
+  name: string | HTMLElement;
 }
 
 export interface AllPokemonId {
@@ -23,9 +23,7 @@ export interface PokemonData {
   image: string;
 }
 export interface AllPokemon {
-  pokemonData: PokemonData[];
-  next: string;
-  previous: string;
+  pokemonData: PokemonData[] | undefined;
 }
 
 export interface PokemonEvolution {

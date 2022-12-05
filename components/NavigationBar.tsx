@@ -80,6 +80,7 @@ export default function NavigationBar() {
                 width={150}
                 height={50}
                 alt="pokedex-logo"
+                priority
               />
             </Link>
           </Box>

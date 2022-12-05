@@ -21,6 +21,7 @@ export default function PokemonPage() {
         width={350}
         height={350}
         // loading="lazy"
+        priority
       />
       {pokemon?.name}
     </Item>

@@ -1,17 +1,51 @@
-import {
-  Autocomplete,
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Autocomplete, Box, TextField } from "@mui/material";
 import React from "react";
+import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 import { regions, types } from "../pokemon-info/pokeInfo";
+import { useRouter } from "next/router";
 
 export default function FilterBar() {
+  const { setRegionVariable, pokemons, setPokemons, setPokemonVariable } =
+    usePokemonData();
+  const router = useRouter();
+
+  const sortInfo = ["ID", "Name"];
+  const pokemonData = pokemons?.pokemonData;
+  let sortedArr = pokemonData?.map((data) => data);
+  let searchInput: string | HTMLElement;
+
+  const handleRegionClick = (regionName: string) => {
+    regions.map((region) => {
+      if (region.name === regionName)
+        setRegionVariable({ limit: region.limit, offset: region.offset });
+    });
+  };
+
+  const handleSortByClick = (sortSelection: string) => {
+    const sortedData =
+      sortSelection === "Name"
+        ? sortedArr?.sort((a, b) =>
+            a.name > b.name ? 1 : a.name < b.name ? -1 : 0
+          )
+        : sortedArr?.sort((a, b) => a.id - b.id);
+    setPokemons({ ...pokemons, pokemonData: sortedData });
+  };
+
+  const handleOnSubmit = (evt: React.FormEvent) => {
+    evt.preventDefault();
+
+    const isFound = pokemonData?.some((data) => {
+      return data.name === searchInput;
+    });
+
+    if (isFound) {
+      console.log("Works");
+      setPokemonVariable({ name: searchInput });
+      router.push(`/pokemon/${searchInput}`);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -34,6 +68,7 @@ export default function FilterBar() {
               component="li"
               sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
               {...props}
+              onClick={() => handleRegionClick(option.name)}
             >
               {option.name} ({option.offset + 1}-{option.limit + option.offset})
             </Box>
@@ -68,38 +103,44 @@ export default function FilterBar() {
             </Box>
           )}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Choose A Type"
-              //   inputProps={{
-              //     ...params.inputProps,
-              //     autoComplete: "new-password", // disable autocomplete and autofill
-              //   }}
-            />
+            <TextField {...params} label="Choose A Type" />
           )}
         />
       </Box>
 
-      <FormControl sx={{ m: 1, minWidth: 100 }}>
-        <InputLabel id="Sort-By-label">Sort By</InputLabel>
-        <Select
-          labelId="Sort-By-label"
-          id="Sort-By"
-          //   value={age}
-          //   onChange={handleChange}
-          autoWidth
-          label="Sort-By-label"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>ID</MenuItem>
-          <MenuItem value={21}>Name</MenuItem>
-        </Select>
-      </FormControl>
+      <Box sx={{ m: 1, minWidth: 100 }}>
+        <Autocomplete
+          id="country-select-demo"
+          options={sortInfo}
+          autoHighlight
+          getOptionLabel={(option) => option}
+          renderOption={(props, option) => (
+            <Box
+              component="li"
+              sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+              {...props}
+              onClick={() => handleSortByClick(option)}
+            >
+              {option}
+            </Box>
+          )}
+          renderInput={(params) => <TextField {...params} label="Sort By" />}
+        />
+      </Box>
 
-      <Box sx={{ m: 1 }}>
-        <TextField id="search" label="Search" variant="outlined" />
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{ m: 1 }}
+        onSubmit={handleOnSubmit}
+      >
+        <TextField
+          id="search"
+          label="Search"
+          variant="outlined"
+          onChange={(evt) => (searchInput = evt.target.value.toLowerCase())}
+        />
       </Box>
     </Box>
   );

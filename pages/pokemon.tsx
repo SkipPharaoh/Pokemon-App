@@ -20,9 +20,7 @@ import FilterBar from "../components/FilterBar";
 export default function Pokemon() {
   const { pokemons, handleViewPokemon } = usePokemonData();
 
-  console.log(typeof pokemons?.pokemonData);
-
-  const pokemonCard = pokemons?.pokemonData.map((pokemon) => {
+  const pokemonCard = pokemons?.pokemonData?.map((pokemon) => {
     const id = pokemon.id;
     const name = pokemon.name;
     const image = pokemon.image;

@@ -53,8 +53,6 @@ export const PokemonDataProvider = ({
 
   const PokemonList: AllPokemon = {
     pokemonData: AllPokemon?.pokemons.results,
-    previous: AllPokemon?.pokemons.previous,
-    next: AllPokemon?.pokemons.next,
   };
 
   const PokemonInfo: PokemonDetail = {
@@ -111,8 +109,8 @@ export const PokemonDataProvider = ({
   useEffect(() => {
     if (!PokemonDetailLoading) {
       setPokemon(PokemonInfo);
-      console.log(PokemonInfo?.typeName);
-      console.log(PokemonInfo);
+      console.log(PokemonDetailError);
+      console.log(PokemonDetail);
     }
   }, [PokemonDetail]);
 
@@ -142,8 +140,19 @@ export const PokemonDataProvider = ({
       pokemons,
       pokemon,
       handleViewPokemon: handleViewPokemonDetail,
+      setRegionVariable,
+      setPokemons,
+      setPokemonVariable,
     }),
-    [handleOnClick, pokemons, pokemon, handleViewPokemonDetail]
+    [
+      handleOnClick,
+      pokemons,
+      pokemon,
+      handleViewPokemonDetail,
+      setRegionVariable,
+      setPokemons,
+      setPokemonVariable,
+    ]
   );
 
   return (
