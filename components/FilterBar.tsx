@@ -1,5 +1,5 @@
 import { Autocomplete, Box, TextField } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 import { regions, types } from "../pokemon-info/pokeInfo";
@@ -8,12 +8,12 @@ import { useRouter } from "next/router";
 export default function FilterBar() {
   const { setRegionVariable, pokemons, setPokemons, setPokemonVariable } =
     usePokemonData();
+  const inputRef = useRef<HTMLInputElement | null>();
   const router = useRouter();
 
   const sortInfo = ["ID", "Name"];
   const pokemonData = pokemons?.pokemonData;
   let sortedArr = pokemonData?.map((data) => data);
-  let searchInput: string | HTMLElement;
 
   const handleRegionClick = (regionName: string) => {
     regions.map((region) => {
@@ -34,14 +34,14 @@ export default function FilterBar() {
 
   const handleOnSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
+    const searchInput = inputRef.current?.value;
 
     const isFound = pokemonData?.some((data) => {
       return data.name === searchInput;
     });
 
     if (isFound) {
-      console.log("Works");
-      setPokemonVariable({ name: searchInput });
+      setPokemonVariable({ name: searchInput as string });
       router.push(`/pokemon/${searchInput}`);
     }
   };
@@ -139,7 +139,7 @@ export default function FilterBar() {
           id="search"
           label="Search"
           variant="outlined"
-          onChange={(evt) => (searchInput = evt.target.value.toLowerCase())}
+          inputRef={inputRef}
         />
       </Box>
     </Box>
