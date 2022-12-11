@@ -35,9 +35,11 @@ export default function Pokemon() {
                   handleViewPokemon(name);
                 }}
               >
-                <Link href={`/pokemon/${name}`}>
-                  <MoreVertIcon />
-                </Link>
+                <Tooltip title="Pokemon Details">
+                  <Link href={`/pokemon/${name}`}>
+                    <MoreVertIcon />
+                  </Link>
+                </Tooltip>
               </IconButton>
             }
             title={`#${id}`}

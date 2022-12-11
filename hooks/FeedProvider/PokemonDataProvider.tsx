@@ -109,6 +109,8 @@ export const PokemonDataProvider = ({
   useEffect(() => {
     if (!PokemonDetailLoading) {
       setPokemon(PokemonInfo);
+      console.log(PokemonDetailError);
+      console.log(PokemonDetail);
     }
   }, [PokemonDetail]);
 

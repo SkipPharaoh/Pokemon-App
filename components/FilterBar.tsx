@@ -4,6 +4,7 @@ import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 import { regions, types } from "../pokemon-info/pokeInfo";
 import { useRouter } from "next/router";
+import SearchBar from "./SearchBar";
 
 export default function FilterBar() {
   const { setRegionVariable, pokemons, setPokemons, setPokemonVariable } =
@@ -128,7 +129,7 @@ export default function FilterBar() {
         />
       </Box>
 
-      <Box
+      {/* <Box
         component="form"
         noValidate
         autoComplete="off"
@@ -141,7 +142,8 @@ export default function FilterBar() {
           variant="outlined"
           inputRef={inputRef}
         />
-      </Box>
+      </Box> */}
+      <SearchBar />
     </Box>
   );
 }
