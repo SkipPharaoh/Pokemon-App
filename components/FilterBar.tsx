@@ -1,16 +1,12 @@
 import { Autocomplete, Box, TextField } from "@mui/material";
-import React, { useRef } from "react";
+import React from "react";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 import { regions, types } from "../pokemon-info/pokeInfo";
-import { useRouter } from "next/router";
 import SearchBar from "./SearchBar";
 
 export default function FilterBar() {
-  const { setRegionVariable, pokemons, setPokemons, setPokemonVariable } =
-    usePokemonData();
-  const inputRef = useRef<HTMLInputElement | null>();
-  const router = useRouter();
+  const { setRegionVariable, pokemons, setPokemons } = usePokemonData();
 
   const sortInfo = ["ID", "Name"];
   const pokemonData = pokemons?.pokemonData;
@@ -31,20 +27,6 @@ export default function FilterBar() {
           )
         : sortedArr?.sort((a, b) => a.id - b.id);
     setPokemons({ ...pokemons, pokemonData: sortedData });
-  };
-
-  const handleOnSubmit = (evt: React.FormEvent) => {
-    evt.preventDefault();
-    const searchInput = inputRef.current?.value;
-
-    const isFound = pokemonData?.some((data) => {
-      return data.name === searchInput;
-    });
-
-    if (isFound) {
-      setPokemonVariable({ name: searchInput as string });
-      router.push(`/pokemon/${searchInput}`);
-    }
   };
 
   return (
@@ -129,20 +111,6 @@ export default function FilterBar() {
         />
       </Box>
 
-      {/* <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        sx={{ m: 1 }}
-        onSubmit={handleOnSubmit}
-      >
-        <TextField
-          id="search"
-          label="Search"
-          variant="outlined"
-          inputRef={inputRef}
-        />
-      </Box> */}
       <SearchBar />
     </Box>
   );
