@@ -20,7 +20,7 @@ export interface AllPokemonImage {
 export interface PokemonData {
   id: number;
   name: string;
-  image: string;
+  dreamworld: string;
 }
 export interface AllPokemon {
   pokemonData: PokemonData[] | undefined;

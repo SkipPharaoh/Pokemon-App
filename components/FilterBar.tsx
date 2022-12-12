@@ -41,7 +41,7 @@ export default function FilterBar() {
     >
       <Box sx={{ m: 1 }}>
         <Autocomplete
-          id="country-select-demo"
+          id="Choose-region"
           sx={{ width: 175 }}
           options={regions}
           autoHighlight
@@ -71,7 +71,7 @@ export default function FilterBar() {
 
       <Box sx={{ m: 1 }}>
         <Autocomplete
-          id="country-select-demo"
+          id="Choose-type"
           sx={{ width: 160 }}
           options={types}
           autoHighlight
@@ -93,7 +93,7 @@ export default function FilterBar() {
 
       <Box sx={{ m: 1, minWidth: 100 }}>
         <Autocomplete
-          id="country-select-demo"
+          id="Sort-by"
           options={sortInfo}
           autoHighlight
           getOptionLabel={(option) => option}

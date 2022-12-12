@@ -8,7 +8,7 @@ export const GetAllPokemon = gql`
       results {
         id
         name
-        image
+        dreamworld
       }
     }
   }
@@ -71,6 +71,19 @@ export const GetPokemonEvolution = gql`
   query evolutionChain($id: String!) {
     evolutionChain(id: $id) {
       response
+    }
+  }
+`;
+
+export const GetPokemonType = gql`
+  query getType($name: String!) {
+    pokemon(name: $name) {
+      types {
+        type {
+          id
+          name
+        }
+      }
     }
   }
 `;
