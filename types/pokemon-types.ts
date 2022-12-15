@@ -21,6 +21,7 @@ export interface PokemonData {
   id: number;
   name: string;
   dreamworld: string;
+  artwork: string;
 }
 export interface AllPokemon {
   pokemonData: PokemonData[] | undefined;

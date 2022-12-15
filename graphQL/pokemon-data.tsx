@@ -9,6 +9,7 @@ export const GetAllPokemon = gql`
         id
         name
         dreamworld
+        artwork
       }
     }
   }

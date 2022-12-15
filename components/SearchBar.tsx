@@ -78,6 +78,22 @@ export default function SearchBar() {
         options={options}
         loading={loading}
         onSelect={handleOnChange}
+        renderOption={(props, option) => (
+          <Box
+            component="li"
+            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+            {...props}
+          >
+            <img
+              loading="lazy"
+              width="20"
+              src={`${option.artwork}`}
+              srcSet={`${option.artwork}`}
+              alt=""
+            />
+            {useFormatString(option.name)}
+          </Box>
+        )}
         renderInput={(params) => (
           <TextField
             {...params}

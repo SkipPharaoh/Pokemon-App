@@ -18,6 +18,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FilterBar from "../components/FilterBar";
 import { useQuery } from "@apollo/client";
 import { GetPokemonType } from "../graphQL/pokemon-data";
+import Image from "next/image";
 
 export default function Pokemon() {
   const { pokemons, handleViewPokemon } = usePokemonData();
@@ -32,11 +33,14 @@ export default function Pokemon() {
       return (
         <Box sx={{ mx: 1 }} key={id}>
           <Tooltip title="Pokemon Type" sx={{ objectFit: "contain" }}>
-            <Avatar
-              sx={{ bgcolor: red[500] }}
-              aria-label="type"
-              srcSet={`/assets/pokeTypes/${typeName}.png`}
-            />
+            <Avatar sx={{ bgcolor: red[900] }} aria-label="type">
+              <Image
+                src={`/assets/pokeTypes/${typeName}.png`}
+                alt={`${typeName} image`}
+                width="30"
+                height="30"
+              />
+            </Avatar>
           </Tooltip>
         </Box>
       );
