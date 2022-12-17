@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Paper, styled, Button } from "@mui/material";
+import { Grid, Box, Paper, styled, Button, Typography } from "@mui/material";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import { regions } from "../pokemon-info/pokeInfo";
 import Link from "next/link";
@@ -24,7 +24,9 @@ export default function Home() {
         <Item>
           <Image src={image[0]} alt={name} width={300} height={300} priority />
           <Button size="large" onClick={handleOnClick}>
-            <Link href="/pokemon">{name}</Link>
+            <Link href="/pokemon">
+              <Typography variant="h4">{name}</Typography>
+            </Link>
           </Button>
         </Item>
       </Grid>

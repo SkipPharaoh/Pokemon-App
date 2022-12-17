@@ -20,6 +20,7 @@ export interface AllPokemonImage {
 export interface PokemonData {
   id: number;
   name: string;
+  type?: string;
   dreamworld: string;
   artwork: string;
 }
@@ -44,8 +45,7 @@ export interface PokemonDetail {
   isAbilityHidden: boolean[];
   gameIndex: number[];
   gameAvailable: string[];
-  statName: string[];
-  statNumber: number[];
+  stats: string[];
   moves: string[];
   levelForMoves: number[];
   methodForMoves: string[];

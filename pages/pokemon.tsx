@@ -1,24 +1,23 @@
-import React from "react";
+import { useQuery } from "@apollo/client";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
-  Grid,
+  Avatar,
   Box,
   Card,
-  Avatar,
   CardContent,
   CardHeader,
   CardMedia,
+  Grid,
   IconButton,
-  Typography,
   Tooltip,
+  Typography,
 } from "@mui/material";
-import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
-import Link from "next/link";
 import { red } from "@mui/material/colors";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import FilterBar from "../components/FilterBar";
-import { useQuery } from "@apollo/client";
-import { GetPokemonType } from "../graphQL/pokemon-data";
 import Image from "next/image";
+import Link from "next/link";
+import FilterBar from "../components/FilterBar";
+import { GetPokemonType } from "../graphQL/pokemon-data";
+import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 
 export default function Pokemon() {
   const { pokemons, handleViewPokemon } = usePokemonData();
@@ -51,7 +50,8 @@ export default function Pokemon() {
   const pokemonCard = pokemons?.pokemonData?.map((pokemon) => {
     const id = pokemon.id;
     const name = pokemon.name;
-    const image = pokemon.dreamworld;
+    const image = pokemon.dreamworld || pokemon.artwork;
+    console.log(image);
     return (
       <Grid item xs={1} sm={2} md={3} lg={4} xl={6} key={id}>
         <Card>
@@ -76,6 +76,9 @@ export default function Pokemon() {
             component="img"
             height="194"
             image={image}
+            onError={(e) => {
+              e.currentTarget.src = `${pokemon.artwork}`;
+            }}
             alt={name}
             sx={{ objectFit: "contain" }}
           />

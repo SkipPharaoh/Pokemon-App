@@ -78,12 +78,10 @@ export const PokemonDataProvider = ({
     gameAvailable: PokemonDetail?.pokemon.game_indices.map(
       (game: PokemonGame) => game.version.name
     ),
-    statName: PokemonDetail?.pokemon.stats.map(
-      (stats: PokemonStats) => stats.stat.name
-    ),
-    statNumber: PokemonDetail?.pokemon.stats.map(
-      (stat: PokemonStats) => stat.base_stat
-    ),
+    stats: PokemonDetail?.pokemon.stats.map((stats: PokemonStats) => [
+      stats.stat.name,
+      stats.base_stat,
+    ]),
     moves: PokemonDetail?.pokemon.moves.map(
       (moves: PokemonMoves) => moves.move.name
     ),
