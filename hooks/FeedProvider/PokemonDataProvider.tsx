@@ -67,10 +67,10 @@ export const PokemonDataProvider = ({
     ),
 
     abilities: PokemonDetail?.pokemon.abilities.map(
-      (abilities: PokemonAbilities) => abilities.ability.name
-    ),
-    isAbilityHidden: PokemonDetail?.pokemon.abilities.map(
-      (hidden: PokemonAbilities) => hidden.is_hidden
+      (abilities: PokemonAbilities) => [
+        abilities.ability.name,
+        abilities.is_hidden,
+      ]
     ),
     gameIndex: PokemonDetail?.pokemon.game_indices.map(
       (game: PokemonGame) => game.game_index
@@ -107,8 +107,6 @@ export const PokemonDataProvider = ({
   useEffect(() => {
     if (!PokemonDetailLoading) {
       setPokemon(PokemonInfo);
-      console.log(PokemonDetailError);
-      console.log(PokemonDetail);
     }
   }, [PokemonDetail]);
 

@@ -42,7 +42,6 @@ export interface PokemonDetail {
   homeImage: string;
   typeName: string[];
   abilities: string[];
-  isAbilityHidden: boolean[];
   gameIndex: number[];
   gameAvailable: string[];
   stats: string[];

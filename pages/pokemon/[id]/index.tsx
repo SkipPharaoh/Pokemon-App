@@ -37,7 +37,7 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
       overflow="auto"
-      maxHeight={350}
+      maxHeight={300}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -104,6 +104,33 @@ export default function PokemonPage() {
       })
     : "";
 
+  const types = !!pokemon?.typeName
+    ? pokemon?.typeName.map((type, index) => {
+        return (
+          <Box key={index}>
+            <Typography variant="inherit">{useFormatString(type)}</Typography>
+          </Box>
+        );
+      })
+    : "";
+
+  const abilities = !!pokemon?.abilities
+    ? pokemon?.abilities.map((ability, index) => {
+        const hidden = ability[1] ? "Hidden" : "Not Hidden";
+        return (
+          <Box
+            key={index}
+            sx={{ display: "flex", justifyContent: "space-evenly" }}
+          >
+            <Typography variant="inherit">
+              {useFormatString(ability[0])}
+            </Typography>
+            {hidden}
+          </Box>
+        );
+      })
+    : "";
+
   const pokemonCard = (
     <Item sx={{ display: "flex", justifyContent: "space-evenly" }}>
       <Box sx={{ maxWidth: 500 }}>
@@ -126,15 +153,27 @@ export default function PokemonPage() {
             <Tab label="Moves" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          {stats}
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          {moves}
-        </TabPanel>
+        <Box
+          sx={{
+            display: "grid",
+            alignContent: "space-between",
+            minHeight: 350,
+          }}
+        >
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            {types}
+            <Typography variant="inherit">{pokemon?.height}</Typography>
+            <Typography variant="inherit">{pokemon?.weight}</Typography>
+            {abilities}
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            {stats}
+          </TabPanel>
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            {moves}
+          </TabPanel>
+          <Box sx={{ mt: 4 }}>Evolutions </Box>
+        </Box>
       </Box>
     </Item>
   );
