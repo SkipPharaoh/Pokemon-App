@@ -1,26 +1,26 @@
-import { useMemo, useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { useEffect, useMemo, useState } from "react";
 import NavigationBar from "../../components/NavigationBar";
-import {
-  AllPokemon,
-  GQLVariableType,
-  PokemonDetail,
-  PokemonTypes,
-  PokemonAbilities,
-  PokemonMoves,
-  PokemonMove,
-  PokemonGame,
-  PokemonStats,
-  PokemonNameVariable,
-} from "../../types/pokemon-types";
+import { GetAllPokemon, GetPokemonDetail } from "../../graphQL/pokemon-data";
+import { regions } from "../../pokemon-info/pokeInfo";
 import {
   PokemonContextProps,
   PokemonDataProviderProps,
 } from "../../types/PokemonDataProviderProps ";
-import { PokemonContext } from "./PokemonContext";
-import { regions } from "../../pokemon-info/pokeInfo";
-import { useQuery } from "@apollo/client";
-import { GetAllPokemon, GetPokemonDetail } from "../../graphQL/pokemon-data";
+import {
+  AllPokemon,
+  GQLVariableType,
+  PokemonAbilities,
+  PokemonDetail,
+  PokemonGame,
+  PokemonMove,
+  PokemonMoves,
+  PokemonNameVariable,
+  PokemonStats,
+  PokemonTypes,
+} from "../../types/pokemon-types";
 import useFormatString from "../FormatString/useFormatString";
+import { PokemonContext } from "./PokemonContext";
 
 export const PokemonDataProvider = ({
   children,
@@ -112,7 +112,8 @@ export const PokemonDataProvider = ({
 
   useEffect(() => {
     if (!AllPokemonLoading) {
-      setPokemons(PokemonList);
+      setPokemons({ ...PokemonList });
+      console.log(pokemons);
     }
   }, [AllPokemon]);
 

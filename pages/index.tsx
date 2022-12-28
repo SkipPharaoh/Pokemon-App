@@ -1,9 +1,8 @@
-import React from "react";
-import { Grid, Box, Paper, styled, Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography, styled } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import { regions } from "../pokemon-info/pokeInfo";
-import Link from "next/link";
-import Image from "next/image";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
 import { Autocomplete, Box, CircularProgress, TextField } from "@mui/material";
-import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
-import { PokemonData } from "../types/pokemon-types";
-import useFormatString from "../hooks/FormatString/useFormatString";
 import { useRouter } from "next/router";
+import React, { useEffect, useRef, useState } from "react";
+import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
+import useFormatString from "../hooks/FormatString/useFormatString";
+import { PokemonData } from "../types/pokemon-types";
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {

@@ -1,14 +1,14 @@
-import Link from "next/link";
-import Image from "next/image";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import {
   AppBar,
   Box,
   Container,
   IconButton,
-  styled,
   Switch,
+  styled,
 } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import Image from "next/image";
+import Link from "next/link";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,

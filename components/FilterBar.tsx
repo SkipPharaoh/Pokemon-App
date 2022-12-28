@@ -1,5 +1,4 @@
 import { Autocomplete, Box, TextField } from "@mui/material";
-import React from "react";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 import { regions, types } from "../pokemon-info/pokeInfo";

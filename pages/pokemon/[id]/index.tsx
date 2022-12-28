@@ -3,10 +3,10 @@ import {
   Box,
   Chip,
   Paper,
-  styled,
   Tab,
   Tabs,
   Typography,
+  styled,
   useTheme,
 } from "@mui/material";
 import Image from "next/image";
