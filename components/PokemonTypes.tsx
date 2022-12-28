@@ -2,8 +2,10 @@ import { useQuery } from "@apollo/client";
 import { Avatar, Box, Tooltip } from "@mui/material";
 import Image from "next/image";
 import { GetPokemonType } from "../graphQL/pokemon-data";
+import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
-import { PokemonTypes } from "../types/pokemon-types";
+import { PokemonData, PokemonTypes } from "../types/pokemon-types";
+import { useEffect } from "react";
 
 type backgroundColor = Record<string, string>;
 interface Props {
@@ -32,11 +34,26 @@ const theme: backgroundColor = {
 } as const;
 
 export default function PokemonTypesInfo({ name }: Props) {
+  const { pokemons, setPokemons } = usePokemonData();
   const { data } = useQuery(GetPokemonType, {
     variables: { name: name },
   });
 
   const pokeTypes = data?.pokemon.types;
+
+  useEffect(() => {
+    setPokemons({
+      pokemonData: pokemons?.pokemonData?.map((pokemon) => {
+        if (pokemon.name === name) {
+          return {
+            ...pokemon,
+            types: pokeTypes,
+          };
+        }
+        return pokemon;
+      }),
+    });
+  }, [pokeTypes]);
 
   const type = pokeTypes?.map((type: PokemonTypes, id: number) => {
     const typeName = type.type.name;
