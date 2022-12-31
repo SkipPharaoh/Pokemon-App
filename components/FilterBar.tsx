@@ -5,7 +5,8 @@ import { regions, types } from "../pokemon-info/pokeInfo";
 import SearchBar from "./SearchBar";
 
 export default function FilterBar() {
-  const { setRegionVariable, pokemons, setPokemons } = usePokemonData();
+  const { setRegionVariable, pokemons, setPokemons, filteredPokemons } =
+    usePokemonData();
 
   const sortInfo = ["ID", "Name"];
   const pokemonData = pokemons?.pokemonData;
@@ -26,6 +27,10 @@ export default function FilterBar() {
           )
         : sortedArr?.sort((a, b) => a.id - b.id);
     setPokemons({ ...pokemons, pokemonData: sortedData });
+  };
+
+  const handleFilterByTypeClick = (type: string) => {
+    console.log(type, filteredPokemons?.pokemonData[0]);
   };
 
   return (
@@ -80,6 +85,7 @@ export default function FilterBar() {
               component="li"
               sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
               {...props}
+              onClick={() => handleFilterByTypeClick(option)}
             >
               {useFormatString(option)}
             </Box>

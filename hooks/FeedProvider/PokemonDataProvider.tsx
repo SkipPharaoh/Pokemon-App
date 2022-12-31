@@ -34,6 +34,7 @@ export const PokemonDataProvider = ({
   const [pokemonVariable, setPokemonVariable] = useState<PokemonNameVariable>({
     name: "pikachu",
   });
+  const [filteredPokemons, setFilteredPokemons] = useState<AllPokemon>();
 
   const {
     loading: AllPokemonLoading,
@@ -140,6 +141,8 @@ export const PokemonDataProvider = ({
       setRegionVariable,
       setPokemons,
       setPokemonVariable,
+      filteredPokemons,
+      setFilteredPokemons,
     }),
     [
       handleOnClick,
@@ -149,6 +152,8 @@ export const PokemonDataProvider = ({
       setRegionVariable,
       setPokemons,
       setPokemonVariable,
+      filteredPokemons,
+      setFilteredPokemons,
     ]
   );
 

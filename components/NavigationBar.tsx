@@ -86,9 +86,6 @@ export default function NavigationBar() {
           </Box>
           <Box sx={{ mt: 0.5 }}>
             <MaterialUISwitch sx={{ m: 1 }} defaultChecked />
-            {/* <Link href="/pokemon">
-              <p>All Pokemon</p>
-            </Link> */}
           </Box>
         </Box>
       </Container>

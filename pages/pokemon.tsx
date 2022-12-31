@@ -19,6 +19,8 @@ import useFormatString from "../hooks/FormatString/useFormatString";
 export default function Pokemon() {
   const { pokemons, handleViewPokemon } = usePokemonData();
 
+  let typesArray: unknown[] = [];
+
   const pokemonCard = pokemons?.pokemonData?.map((pokemon) => {
     const id = pokemon.id;
     const name = pokemon.name;
@@ -66,7 +68,7 @@ export default function Pokemon() {
               mb: 1,
             }}
           >
-            <PokemonTypes name={name} />
+            <PokemonTypes name={name} typesArray={typesArray} />
           </Box>
         </Card>
       </Grid>

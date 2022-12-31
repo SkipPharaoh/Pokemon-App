@@ -14,6 +14,8 @@ export interface PokemonContextProps {
   setRegionVariable: (value: SetStateAction<GQLVariableType>) => void;
   setPokemons: (value: SetStateAction<AllPokemon | undefined>) => void;
   setPokemonVariable: (value: SetStateAction<PokemonNameVariable>) => void;
+  filteredPokemons: AllPokemon | undefined;
+  setFilteredPokemons: (value: SetStateAction<AllPokemon | undefined>) => void;
 }
 
 export interface PokemonDataProviderProps {

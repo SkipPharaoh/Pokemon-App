@@ -1,15 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { Avatar, Box, Tooltip } from "@mui/material";
 import Image from "next/image";
+import { useEffect } from "react";
 import { GetPokemonType } from "../graphQL/pokemon-data";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 import { PokemonData, PokemonTypes } from "../types/pokemon-types";
-import { useEffect } from "react";
 
 type backgroundColor = Record<string, string>;
 interface Props {
   name: string;
+  typesArray: unknown[];
 }
 
 const theme: backgroundColor = {
@@ -33,8 +34,8 @@ const theme: backgroundColor = {
   water: "#539DDF",
 } as const;
 
-export default function PokemonTypesInfo({ name }: Props) {
-  const { pokemons, setPokemons } = usePokemonData();
+export default function PokemonTypesInfo({ name, typesArray }: Props) {
+  const { pokemons, setFilteredPokemons, filteredPokemons } = usePokemonData();
   const { data } = useQuery(GetPokemonType, {
     variables: { name: name },
   });
@@ -42,18 +43,16 @@ export default function PokemonTypesInfo({ name }: Props) {
   const pokeTypes = data?.pokemon.types;
 
   useEffect(() => {
-    setPokemons({
-      pokemonData: pokemons?.pokemonData?.map((pokemon) => {
-        if (pokemon.name === name) {
-          return {
-            ...pokemon,
-            types: pokeTypes,
-          };
-        }
-        return pokemon;
-      }),
+    pokemons?.pokemonData?.map((pokemon, id: number) => {
+      if (pokemon.name === name) {
+        return (typesArray[id] = {
+          ...pokemon,
+          type: pokeTypes,
+        });
+      }
     });
-  }, [pokeTypes]);
+    setFilteredPokemons({ pokemonData: typesArray as PokemonData[] });
+  }, [pokeTypes, name]);
 
   const type = pokeTypes?.map((type: PokemonTypes, id: number) => {
     const typeName = type.type.name;
