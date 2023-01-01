@@ -30,7 +30,25 @@ export default function FilterBar() {
   };
 
   const handleFilterByTypeClick = (type: string) => {
-    console.log(type, filteredPokemons?.pokemonData[0]);
+    const unFilteredData = filteredPokemons?.pokemonData?.map((data) => data);
+
+    // setPokemons({
+    //   ...pokemons,
+    //   pokemonData: unFilteredData,
+    // });
+
+    console.log(type, unFilteredData);
+    console.log(type, filteredPokemons?.pokemonData);
+
+    const filteredData = filteredPokemons?.pokemonData?.filter((pokemon) => {
+      return (
+        pokemon?.type[0].type.name === type ||
+        pokemon?.type[1]?.type.name === type
+      );
+    });
+
+    setPokemons({ ...pokemons, pokemonData: filteredData });
+    console.log(filteredData);
   };
 
   return (
