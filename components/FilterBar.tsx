@@ -5,8 +5,14 @@ import { regions, types } from "../pokemon-info/pokeInfo";
 import SearchBar from "./SearchBar";
 
 export default function FilterBar() {
-  const { setRegionVariable, pokemons, setPokemons, filteredPokemons } =
-    usePokemonData();
+  const {
+    setRegionVariable,
+    pokemons,
+    setPokemons,
+    filteredPokemons,
+    isPokemonTypeFilter,
+    setIsPokemonTypeFilter,
+  } = usePokemonData();
 
   const sortInfo = ["ID", "Name"];
   const pokemonData = pokemons?.pokemonData;
@@ -30,15 +36,9 @@ export default function FilterBar() {
   };
 
   const handleFilterByTypeClick = (type: string) => {
-    const unFilteredData = filteredPokemons?.pokemonData?.map((data) => data);
-
-    // setPokemons({
-    //   ...pokemons,
-    //   pokemonData: unFilteredData,
-    // });
-
-    console.log(type, unFilteredData);
-    console.log(type, filteredPokemons?.pokemonData);
+    setIsPokemonTypeFilter(!isPokemonTypeFilter);
+    console.log(isPokemonTypeFilter);
+    // console.log(type, filteredPokemons?.pokemonData);
 
     const filteredData = filteredPokemons?.pokemonData?.filter((pokemon) => {
       return (

@@ -95,3 +95,5 @@ export interface PokemonMove {
     name: string;
   };
 }
+
+export type backgroundColor = Record<string, string>;

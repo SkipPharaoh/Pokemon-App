@@ -16,6 +16,10 @@ export interface PokemonContextProps {
   setPokemonVariable: (value: SetStateAction<PokemonNameVariable>) => void;
   filteredPokemons: AllPokemon | undefined;
   setFilteredPokemons: (value: SetStateAction<AllPokemon | undefined>) => void;
+  isPokemonTypeFilter: boolean;
+  setIsPokemonTypeFilter: (value: SetStateAction<boolean>) => void;
+  PokemonDetailLoading: boolean;
+  AllPokemonLoading: boolean;
 }
 
 export interface PokemonDataProviderProps {

@@ -35,6 +35,8 @@ export const PokemonDataProvider = ({
     name: "pikachu",
   });
   const [filteredPokemons, setFilteredPokemons] = useState<AllPokemon>();
+  const [isPokemonTypeFilter, setIsPokemonTypeFilter] =
+    useState<boolean>(false);
 
   const {
     loading: AllPokemonLoading,
@@ -116,7 +118,7 @@ export const PokemonDataProvider = ({
       setPokemons({ ...PokemonList });
       console.log(pokemons);
     }
-  }, [AllPokemon]);
+  }, [AllPokemon, isPokemonTypeFilter]);
 
   const handleOnClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
     regionName = evt.target as HTMLElement;
@@ -143,6 +145,10 @@ export const PokemonDataProvider = ({
       setPokemonVariable,
       filteredPokemons,
       setFilteredPokemons,
+      isPokemonTypeFilter,
+      setIsPokemonTypeFilter,
+      PokemonDetailLoading,
+      AllPokemonLoading,
     }),
     [
       handleOnClick,
@@ -154,6 +160,10 @@ export const PokemonDataProvider = ({
       setPokemonVariable,
       filteredPokemons,
       setFilteredPokemons,
+      isPokemonTypeFilter,
+      setIsPokemonTypeFilter,
+      PokemonDetailLoading,
+      AllPokemonLoading,
     ]
   );
 

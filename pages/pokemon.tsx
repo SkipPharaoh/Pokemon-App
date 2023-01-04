@@ -5,6 +5,7 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  CircularProgress,
   Grid,
   IconButton,
   Tooltip,
@@ -13,11 +14,18 @@ import {
 import Link from "next/link";
 import FilterBar from "../components/FilterBar";
 import PokemonTypes from "../components/PokemonTypes";
+import useColorGradient from "../hooks/ColorGradient/useColorGradient";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 
 export default function Pokemon() {
-  const { pokemons, handleViewPokemon } = usePokemonData();
+  const {
+    pokemons,
+    handleViewPokemon,
+    filteredPokemons,
+    setPokemons,
+    AllPokemonLoading,
+  } = usePokemonData();
 
   let typesArray: unknown[] = [];
 
@@ -28,7 +36,16 @@ export default function Pokemon() {
 
     return (
       <Grid item xs={1} sm={2} md={3} lg={4} xl={6} key={id}>
-        <Card>
+        <Card
+          sx={{
+            boxShadow: 20,
+            borderRadius: 10,
+            //   background: `linear-gradient(to bottom, ${useColorGradient(
+            //     filteredPokemons?.pokemonData[id]?.type[0]?.type.name,
+            //     filteredPokemons?.pokemonData[id]?.type[1]?.type.name
+            //   )})`,
+          }}
+        >
           <CardHeader
             action={
               <IconButton
@@ -74,6 +91,21 @@ export default function Pokemon() {
       </Grid>
     );
   });
+
+  if (AllPokemonLoading || !pokemons?.pokemonData) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>

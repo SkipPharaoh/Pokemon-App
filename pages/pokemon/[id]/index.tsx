@@ -2,6 +2,7 @@ import {
   AppBar,
   Box,
   Chip,
+  CircularProgress,
   Paper,
   Tab,
   Tabs,
@@ -55,13 +56,28 @@ function a11yProps(index: number) {
 export default function PokemonPage() {
   const theme = useTheme();
   const [value, setValue] = useState(0);
-  const { pokemon } = usePokemonData();
+  const { pokemon, PokemonDetailLoading } = usePokemonData();
+
+  if (PokemonDetailLoading || !pokemon?.officialImage) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  console.log(pokemon);
+  // console.log(pokemon);
   const name = !!pokemon?.name ? useFormatString(pokemon?.name) : "";
   const image = !!pokemon?.officialImage ? (
     <Image
@@ -162,8 +178,8 @@ export default function PokemonPage() {
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             {types}
-            <Typography variant="inherit">{pokemon?.height}</Typography>
-            <Typography variant="inherit">{pokemon?.weight}</Typography>
+            <Typography variant="inherit">Height: {pokemon?.height}</Typography>
+            <Typography variant="inherit">Weight: {pokemon?.weight}</Typography>
             {abilities}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
