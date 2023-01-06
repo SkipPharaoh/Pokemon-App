@@ -38,8 +38,12 @@ export default function Pokemon() {
       <Grid item xs={1} sm={2.5} md={4} lg={6} xl={8} key={id}>
         <Card
           sx={{
-            boxShadow: 20,
+            boxShadow: 23,
             borderRadius: 10,
+            "&:hover": {
+              transition: "all .5s ease-in-out",
+              transform: "translate(0, 1.5px) scale(1.15)",
+            },
             //   background: `linear-gradient(to bottom, ${useColorGradient(
             //     filteredPokemons?.pokemonData[id]?.type[0]?.type.name,
             //     filteredPokemons?.pokemonData[id]?.type[1]?.type.name
@@ -91,21 +95,6 @@ export default function Pokemon() {
       </Grid>
     );
   });
-
-  // if (AllPokemonLoading || !pokemons?.pokemonData) {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         height: "100vh",
-  //       }}
-  //     >
-  //       <CircularProgress />
-  //     </Box>
-  //   );
-  // }
 
   return (
     <Box sx={{ flexGrow: 1 }}>

@@ -22,9 +22,13 @@ export default function Home() {
       <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name}>
         <Item
           sx={{
-            boxShadow: 20,
+            boxShadow: 23,
             position: "relative",
             minHeight: 300,
+            "&:hover": {
+              transition: "all .5s ease-in-out",
+              transform: "translate(0, 1.5px) scale(1.05)",
+            },
           }}
         >
           <Image src={image[0]} alt={name} fill priority />
@@ -57,6 +61,7 @@ export default function Home() {
         container
         spacing={{ xs: 2, md: 3, lg: 4, xl: 5 }}
         columns={{ xs: 4, sm: 8, md: 12, lg: 16, xl: 20 }}
+        sx={{ justifyContent: "center" }}
       >
         {regionName}
       </Grid>
