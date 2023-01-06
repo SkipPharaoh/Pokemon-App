@@ -20,11 +20,30 @@ export default function Home() {
     const image = region.image;
     return (
       <Grid item xs={2} sm={4} md={4} lg={5} xl={6} key={name}>
-        <Item>
-          <Image src={image[0]} alt={name} width={300} height={300} priority />
-          <Button size="large" onClick={handleOnClick}>
+        <Item
+          sx={{
+            boxShadow: 20,
+            position: "relative",
+            minHeight: 300,
+          }}
+        >
+          <Image src={image[0]} alt={name} fill priority />
+          <Button size="small" onClick={handleOnClick}>
             <Link href="/pokemon">
-              <Typography variant="h4">{name}</Typography>
+              <Typography
+                variant="h4"
+                sx={{
+                  color: "blue",
+                  backgroundColor: "lightyellow",
+                  position: "absolute",
+                  borderRadius: 4,
+                  textShadow: "5px 5px 4px #fff000",
+                  top: 265,
+                  left: -10,
+                }}
+              >
+                {name}
+              </Typography>
             </Link>
           </Button>
         </Item>

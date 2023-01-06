@@ -35,7 +35,7 @@ export default function Pokemon() {
     const image = pokemon.dreamworld || pokemon.artwork;
 
     return (
-      <Grid item xs={1} sm={2} md={3} lg={4} xl={6} key={id}>
+      <Grid item xs={1} sm={2.5} md={4} lg={6} xl={8} key={id}>
         <Card
           sx={{
             boxShadow: 20,
@@ -92,31 +92,45 @@ export default function Pokemon() {
     );
   });
 
-  if (AllPokemonLoading || !pokemons?.pokemonData) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
-  }
+  // if (AllPokemonLoading || !pokemons?.pokemonData) {
+  //   return (
+  //     <Box
+  //       sx={{
+  //         display: "flex",
+  //         justifyContent: "center",
+  //         alignItems: "center",
+  //         height: "100vh",
+  //       }}
+  //     >
+  //       <CircularProgress />
+  //     </Box>
+  //   );
+  // }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <FilterBar />
-      <Grid
-        container
-        spacing={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
-        columns={{ xs: 2, sm: 8, md: 16, lg: 32, xl: 64 }}
-      >
-        {pokemonCard}
-      </Grid>
+      {AllPokemonLoading || !pokemons?.pokemonData ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "50vh",
+          }}
+        >
+          <CircularProgress size={100} />
+        </Box>
+      ) : (
+        <Grid
+          container
+          spacing={{ xs: 5, sm: 5, md: 5, lg: 5, xl: 5 }}
+          columns={{ xs: 2, sm: 8, md: 16, lg: 32, xl: 52 }}
+          sx={{ justifyContent: "center" }}
+        >
+          {pokemonCard}
+        </Grid>
+      )}
     </Box>
   );
 }
