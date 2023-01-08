@@ -75,6 +75,7 @@ export default function PokemonPage() {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    return event;
   };
 
   // console.log(pokemon);
