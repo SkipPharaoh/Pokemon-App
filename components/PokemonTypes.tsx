@@ -29,6 +29,7 @@ export default function PokemonTypesInfo({ name, typesArray }: Props) {
           type: pokeTypes,
         });
       }
+      return pokemon;
     });
 
     console.log(typesArray[0]);
