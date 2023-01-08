@@ -41,7 +41,7 @@ export const PokemonDataProvider = ({
 
   const {
     loading: AllPokemonLoading,
-    error: AllPokemonError,
+    // error: AllPokemonError,
     data: AllPokemon,
   } = useQuery(GetAllPokemon, {
     variables: regionVariable,
@@ -49,7 +49,7 @@ export const PokemonDataProvider = ({
 
   const {
     loading: PokemonDetailLoading,
-    error: PokemonDetailError,
+    // error: PokemonDetailError,
     data: PokemonDetail,
   } = useQuery(GetPokemonDetail, {
     variables: pokemonVariable,

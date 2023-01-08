@@ -9,7 +9,6 @@ export default function FilterBar() {
     setRegionVariable,
     pokemons,
     setPokemons,
-    filteredPokemons,
     isPokemonTypeFilter,
     setIsPokemonTypeFilter,
   } = usePokemonData();
@@ -38,6 +37,7 @@ export default function FilterBar() {
   const handleFilterByTypeClick = (type: string) => {
     setIsPokemonTypeFilter(!isPokemonTypeFilter);
     console.log(isPokemonTypeFilter);
+    console.log(type);
     // console.log(type, filteredPokemons?.pokemonData);
 
     // const filteredData = filteredPokemons?.pokemonData?.filter((pokemon) => {

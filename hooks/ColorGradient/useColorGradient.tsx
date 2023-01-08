@@ -1,4 +1,3 @@
-import React from "react";
 import { theme } from "../../pokemon-info/pokeInfo";
 // import {} from '../../pokemon-info/pokeInfo';
 

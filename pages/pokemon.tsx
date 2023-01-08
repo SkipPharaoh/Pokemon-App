@@ -14,7 +14,7 @@ import {
 import Link from "next/link";
 import FilterBar from "../components/FilterBar";
 import PokemonTypes from "../components/PokemonTypes";
-import useColorGradient from "../hooks/ColorGradient/useColorGradient";
+// import useColorGradient from "../hooks/ColorGradient/useColorGradient";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
 
@@ -22,8 +22,8 @@ export default function Pokemon() {
   const {
     pokemons,
     handleViewPokemon,
-    filteredPokemons,
-    setPokemons,
+    // filteredPokemons,
+    // setPokemons,
     AllPokemonLoading,
   } = usePokemonData();
 

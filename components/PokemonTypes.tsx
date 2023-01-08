@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { Avatar, Box, Skeleton, Tooltip } from "@mui/material";
 import Image from "next/image";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { GetPokemonType } from "../graphQL/pokemon-data";
 import { usePokemonData } from "../hooks/FeedProvider/usePokemonData";
 import useFormatString from "../hooks/FormatString/useFormatString";
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function PokemonTypesInfo({ name, typesArray }: Props) {
-  const { pokemons, setFilteredPokemons, filteredPokemons } = usePokemonData();
+  const { pokemons, setFilteredPokemons } = usePokemonData();
   const { data, loading } = useQuery(GetPokemonType, {
     variables: { name: name },
   });
