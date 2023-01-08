@@ -65,7 +65,7 @@ export default function NavigationBar() {
           <Box sx={{ mt: 1 }}>
             <IconButton>
               <a
-                href="https://github.com/SkipPharaoh"
+                href="https://github.com/SkipPharaoh/Pokemon-App"
                 rel="noopener noreffer"
                 target="_blank"
               >
