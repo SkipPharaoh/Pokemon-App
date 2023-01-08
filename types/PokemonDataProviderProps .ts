@@ -20,6 +20,8 @@ export interface PokemonContextProps {
   setIsPokemonTypeFilter: (value: SetStateAction<boolean>) => void;
   PokemonDetailLoading: boolean;
   AllPokemonLoading: boolean;
+  topButton: boolean;
+  scrollToTop: () => void;
 }
 
 export interface PokemonDataProviderProps {

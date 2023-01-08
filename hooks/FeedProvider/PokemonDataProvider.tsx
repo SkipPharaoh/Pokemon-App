@@ -34,6 +34,7 @@ export const PokemonDataProvider = ({
   const [pokemonVariable, setPokemonVariable] = useState<PokemonNameVariable>({
     name: "pikachu",
   });
+  const [topButton, setTopButton] = useState<boolean>(false);
   const [filteredPokemons, setFilteredPokemons] = useState<AllPokemon>();
   const [isPokemonTypeFilter, setIsPokemonTypeFilter] =
     useState<boolean>(false);
@@ -120,6 +121,16 @@ export const PokemonDataProvider = ({
     }
   }, [AllPokemon, isPokemonTypeFilter]);
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        setTopButton(true);
+      } else {
+        setTopButton(false);
+      }
+    });
+  }, []);
+
   const handleOnClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
     regionName = evt.target as HTMLElement;
     regionName = useFormatString(regionName.innerText);
@@ -132,6 +143,13 @@ export const PokemonDataProvider = ({
   const handleViewPokemonDetail = (name: string) => {
     pokemonName = useFormatString(name).toLowerCase();
     setPokemonVariable({ name: pokemonName });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const value: PokemonContextProps = useMemo(
@@ -149,6 +167,8 @@ export const PokemonDataProvider = ({
       setIsPokemonTypeFilter,
       PokemonDetailLoading,
       AllPokemonLoading,
+      topButton,
+      scrollToTop,
     }),
     [
       handleOnClick,
@@ -164,6 +184,8 @@ export const PokemonDataProvider = ({
       setIsPokemonTypeFilter,
       PokemonDetailLoading,
       AllPokemonLoading,
+      topButton,
+      scrollToTop,
     ]
   );
 
