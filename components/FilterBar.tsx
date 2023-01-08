@@ -40,15 +40,15 @@ export default function FilterBar() {
     console.log(isPokemonTypeFilter);
     // console.log(type, filteredPokemons?.pokemonData);
 
-    const filteredData = filteredPokemons?.pokemonData?.filter((pokemon) => {
-      return (
-        pokemon?.type[0].type.name === type ||
-        pokemon?.type[1]?.type.name === type
-      );
-    });
+    // const filteredData = filteredPokemons?.pokemonData?.filter((pokemon) => {
+    //   return (
+    //     pokemon?.type[0].type.name === type ||
+    //     pokemon?.type[1]?.type.name === type
+    //   );
+    // });
 
-    setPokemons({ ...pokemons, pokemonData: filteredData });
-    console.log(filteredData);
+    // setPokemons({ ...pokemons, pokemonData: filteredData });
+    // console.log(filteredData);
   };
 
   return (
